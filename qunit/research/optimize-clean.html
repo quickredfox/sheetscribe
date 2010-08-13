@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>}</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/master.css" />
+	<script src="jslitmus.js" type="text/javascript" charset="utf-8"></script>
+	<script src="fixtures.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<script type="text/javascript" charset="utf-8">
+	
+var FMATCH="$1",LCURL = '{',RCURL='}',DRCURL='}}',EMPTY='',COLON=':',SEMI=';',SPC=' ';
+
+    function clean(css) {
+        clean.RE.forEach(function(re) {
+            css = css.replace(re[0],re[1]);
+        })
+        return css;
+    };
+    clean.RE = [
+     [(/\/\*[^*]*\*+([^\/*][^*]*\*+)*\//g),EMPTY], // strip out comments and extra linebreaks/whitespace
+     [(/([\r\n\t\s]){1,}/gm),FMATCH],              // strip out multiple whitespace
+     [(/[\n\t\s\r]+([\{\}])[\n\t\s\r]+?/g),FMATCH], // strip out extra whitespace before and after curlies
+     [(/([^\}\;])\}/g),FMATCH+";}"]                // bring back optional last semicolon
+    ];
+
+    function cleanII(css) {
+        return css.replace(cleanII.RE[0][0],cleanII.RE[0][1])
+				  .replace(cleanII.RE[1][0],cleanII.RE[1][1])
+				  .replace(cleanII.RE[2][0],cleanII.RE[2][1])
+				  .replace(cleanII.RE[3][0],cleanII.RE[3][1]);
+    };
+    cleanII.RE = [
+     [(/\/\*[^*]*\*+([^\/*][^*]*\*+)*\//g),EMPTY], // strip out comments and extra linebreaks/whitespace
+     [(/([\r\n\t\s]){1,}/gm),FMATCH],              // strip out multiple whitespace
+     [(/[\n\t\s\r]+([\{\}])[\n\t\s\r]+?/g),FMATCH], // strip out extra whitespace before and after curlies
+     [(/([^\}\;])\}/g),FMATCH+";}"]                // bring back optional last semicolon
+    ];
+
+	function cleanIII(css) {
+        return css.replace(/\/\*[^*]*\*+([^\/*][^*]*\*+)*\//g,EMPTY)
+				  .replace(/([\r\n\t\s]){1,}/gm,FMATCH)
+				  .replace(/[\n\t\s\r]+([\{\}])[\n\t\s\r]+?/g,FMATCH)
+				  .replace(/([^\}\;])\}/g,cleanII.RE[3][1],FMATCH+";}");
+    };
+ 
+	JSLitmus.test('first version of clean', function(count) {
+		loadfixtures()
+		while(--count){
+			clean(CSS);			
+		}
+
+	});
+	JSLitmus.test('second verison of clean', function(count) {
+		loadfixtures()
+		while(--count){
+			cleanII(CSS);			
+		}
+	});
+
+	JSLitmus.test('third verison of clean', function(count) {
+		loadfixtures();
+		while(--count){
+			cleanIII(CSS);			
+		}
+	});
+
+
+		
+		
+	</script>
+	
+</body>
+</html>
