@@ -1,3 +1,20 @@
+
+/////////////// DO NOT EDIT, FILE IS GENERATED ///////////////
+/*
+ 
+  SheetScribe.js v0.0.1
+ 
+  A CSS tokenizer written in javascript. 
+ 
+  Copyright 2010, Francois Lafortune, quickredfox
+  Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ 
+  Usage:
+ 
+  #TODO 
+
+*/
+(function(window,undefined){
 /*
     A tiny tiny bit faster.
 */
@@ -245,3 +262,4 @@ if (!window.SheetScribe) window.SheetScribe = {
     stringify: stringify
     //      parse: undefined yet
 };
+})(this);
