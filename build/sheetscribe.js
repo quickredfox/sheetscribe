@@ -2,7 +2,7 @@
 /////////////// DO NOT EDIT, FILE IS GENERATED ///////////////
 /*
  
-  SheetScribe.js v0.0.1
+  SheetScribe.js v0.0.2
  
   A CSS tokenizer written in javascript. 
  
@@ -99,9 +99,7 @@ var Declaration = function(selector, properties) {
     };
     this.toCSS = function() {
         var css = [this.selector, LCURL];
-        this.properties.forEach(function(prop) {
-            css.push(prop.toCSS())
-        })
+        this.properties.forEach(function(prop) { css.push(prop.toCSS()) });
         return css.join(EMPTY) + RCURL
     }
 };
@@ -247,11 +245,13 @@ function stringify(tokenized) {
   Allows one to parse css 
 */
 function parse(css, media, processors) {
-    var opts = parse.assign(arguments);
-    var parsables = opts.tokens[media];
-    
+    var opts = parse.assign(arguments),
+        parsables = opts.tokens[media];
     return parsables;
 }
+/*
+ Helps parse support different argument signatures
+*/
 parse.assign = function(args) {
     var tokens=(typeof args[0] == 'string' ? tokenize(args[0]) : args[0]),
     media,
@@ -269,6 +269,7 @@ parse.assign = function(args) {
  Pubic Interface 
 */
 if (!window.SheetScribe) window.SheetScribe = {
+    Version: '0.0.2',
     tokenize: tokenize,
     stringify: stringify,
     parse: parse
