@@ -173,7 +173,6 @@ test('parse.assign()',function() {
     }\
     ";
     var tokens = tokenize(css);
-    var proc = {foo:function() {}};
     var form1 = parse.assign([css,'dev',proc]);
     var form2 = parse.assign([css,proc]);    
     var form3 = parse.assign([css,'dev']);    
