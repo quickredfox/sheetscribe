@@ -1,5 +1,10 @@
 
-0.0.1 / 2010-08-02
+0.0.1 / 2010-08-11
 ------------------
 
-* css-tokenizer initial release
+* basics, git etc..
+
+0.0.1 / 2010-08-12
+------------------
+
+* sheetscribe initial release 

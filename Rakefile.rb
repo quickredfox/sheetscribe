@@ -3,7 +3,7 @@ require 'ftools'
 require 'fssm'
 LIB_PATH = File.join(File.dirname(__FILE__), 'lib')
 BUILD_PATH = File.join(File.dirname(__FILE__), 'build')
-WARN = "/////////////// DO NOT EDIT, FILE IS GENERATED ///////////////"
+WARN = "\n/////////////// DO NOT EDIT, FILE IS GENERATED ///////////////\n"
 HEADER = File.read(File.join(LIB_PATH,'HEADER'))
 FOOTER = File.read(File.join(LIB_PATH,'FOOTER'))    
 
@@ -26,14 +26,14 @@ class CSSTOKENIZERTasks
   end
   def watch
     FSSM.monitor(LIB_PATH, '*.js') do
-      update {|base, relative| CSSTOKENIZER.build unless relative == 'css-tokenizer.js'}
-      delete {|base, relative| CSSTOKENIZER.build unless relative == 'css-tokenizer.js'}
-      create {|base, relative| CSSTOKENIZER.build unless relative == 'css-tokenizer.js'}
+      update {|base, relative| CSSTOKENIZER.build }
+      delete {|base, relative| CSSTOKENIZER.build }
+      create {|base, relative| CSSTOKENIZER.build }
     end
      FSSM.monitor(LIB_PATH,'processors', '*.js') do
-        update {|base, relative| CSSTOKENIZER.build unless relative == 'css-tokenizer.js'}
-        delete {|base, relative| CSSTOKENIZER.build unless relative == 'css-tokenizer.js'}
-        create {|base, relative| CSSTOKENIZER.build unless relative == 'css-tokenizer.js'}
+        update {|base, relative| CSSTOKENIZER.build }
+        delete {|base, relative| CSSTOKENIZER.build }
+        create {|base, relative| CSSTOKENIZER.build }
       end
   end
   
@@ -48,13 +48,10 @@ class CSSTOKENIZERTasks
     @compressed = compressor.compress(@merged)
   end
   def make_files
-    File.open(File.join(LIB_PATH,'css-tokenizer.js'),'w') do |f|
+    File.open(File.join(BUILD_PATH,'sheetscribe.js'), 'w') do |f|
       f.write(@merged)
     end
-    File.open(File.join(BUILD_PATH,'css-tokenizer.js'), 'w') do |f|
-      f.write(@merged)
-    end
-    File.open(File.join(BUILD_PATH,'css-tokenizer-compressed.js'), 'w') do |f| 
+    File.open(File.join(BUILD_PATH,'sheetscribe-compressed.js'), 'w') do |f| 
       f.write(@compressed)
     end
    

@@ -1,4 +1,4 @@
-module("Test css-tokenizer");
+module("Example");
 test('Truthiness',function() {
-    ok(true, 'should be true');
+    ok(!!(true), 'should be true');
 });

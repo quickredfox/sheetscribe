@@ -4,8 +4,18 @@
 	<meta charset=utf-8 />
 	<title>tokenizer</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="css-tokenizer.js" type="text/javascript" charset="utf-8"></script>
-	
+	<script src="sheetscribe.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+	    $(function() {
+	        $.get('soup.css',function(css) {
+	                var tokenized = SheetScribe.tokenize(css);
+	                console.debug(tokenized)
+	                var stringified = SheetScribe.stringify(tokenized);
+                //	console.log(stringified)	
+	        });
+	    });
+		
+	</script>
 </head>
 <body>
 	<h1>CSS Tokenizer</h1>

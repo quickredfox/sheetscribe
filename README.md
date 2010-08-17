@@ -1,4 +1,4 @@
-# css-tokenizer
+# sheetscribe
 
 Description
 
@@ -6,7 +6,7 @@ Description
 
 (The MIT License)
 
-Copyright (c) 2010 Your Name, your.email@css-tokenizer.com
+Copyright (c) 2010 Your Name, your.email@sheetscribe.com
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
