@@ -8,10 +8,11 @@
 	<script type="text/javascript" charset="utf-8">
 	    $(function() {
 	        $.get('soup.css',function(css) {
-	                var tokenized = SheetScribe.tokenize(css);
-	                console.debug(tokenized)
-	                var stringified = SheetScribe.stringify(tokenized);
-                	console.log(stringified)	
+					SheetScribe.parse(css,'all',{});
+	                //var tokenized = SheetScribe.tokenize(css);
+	                //console.debug(tokenized)
+	                //var stringified = SheetScribe.stringify(tokenized);
+                	//console.log(stringified)	
 	        });
 	    });
 		
